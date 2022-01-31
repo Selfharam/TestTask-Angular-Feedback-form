@@ -1,0 +1,65 @@
+ <h1>Feedback</h1>
+  <div class="form-group">
+    <label>
+      Name:
+      <input class="form-control" type="text" placeholder="Name"
+             [(ngModel)]="Feedbacks.name" required #Name="ngModel">
+    </label>
+    <label [hidden]="Name.valid || Name.untouched" class="alert alert-danger">
+      Name must be not empty
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Email:
+      <input class="form-control" type="text" placeholder="Email"
+             [(ngModel)]="Feedbacks.email" required #Email="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+    </label>
+    <label [hidden]="Email.valid || Email.untouched" class="alert alert-danger">
+      Email must be not empty and match the template
+    </label>
+
+  </div>
+
+  <div class="form-group">
+    <label>
+      Telephone:
+      <input class="form-control" type="text" placeholder="Telephone"
+             [(ngModel)]="Feedbacks.telephone" required #Telephone="ngModel" pattern="^((\\+7|7|8)+([0-9]){10})$">
+    </label>
+
+    <label [hidden]="Telephone.valid || Telephone.untouched" class="alert alert-danger">
+      Telephone must be not empty and match the template
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Topic:
+      <select class="form-control" (change)="selectTopic($event)">
+        <option disabled selected value>choose topic</option>
+        <option *ngFor="let topic of topics">
+          {{topic}}
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Message:
+      <textarea class="form-control" type="text" placeholder="message"
+                [(ngModel)]="Feedbacks.message" required #Message="ngModel"></textarea>
+    </label>
+    <label [hidden]="Message.valid || Message.untouched" class="alert alert-danger">
+      Message must be not empty
+    </label>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="Send()">Send</button>
+  </div>
+
+
+
